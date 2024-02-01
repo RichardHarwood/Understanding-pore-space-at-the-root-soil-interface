@@ -44,4 +44,6 @@ Multiple models are trained, adn testeed on segmented data that is left out of m
 
 This [blog post](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9) explains the metrics and how to interpret them. It is important to stay grounded, even a trained expert hand-segmenting every slice would make some mistakes. The use of this automated approaches is always a balance between accuracy and efficiency.  
 
+Once this notebook is run we have a segmented folder for each CT scan, the next step is draw meaningful information from the segmented images. 
+
 
