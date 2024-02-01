@@ -1,4 +1,4 @@
-# Understanding-pore-space-at-the-root-soil-interface-in-soil
+# Understanding pore space at the root soil interface in soil
 ### Overview 
 Soil has been referred to as the most complex biomaterial on earth (Young and Crawford 2004), this complexity is increased when the focus is on the plant-soil interface. It is well understood that soil structure and soil biota influence soil health and that plant root architecture and root exudates are influential. The most obvious way that plant roots change soil structure is through physical force. As a plant root navigates through the soil it changes not just the physical structure but also the chemical and biological properties in its immediate vicinity (Hinsinger 2009). During root growth a distinct volume of soil often adheres to the plant root called the rhizosheath, and immediately adjacent to this is an area of soil called the rhizosphere that is distinctly different to bulk soil which is further away from the root system. The rhizosheath and rhizosphere have a very interesting implication: they show that a small volume of soil that is close too, but not touching, the root system can have different structural, chemical, and biological properties to near-by bulk soil. In this distinct volume of soil, bacteria form microaggregates by binding soil particles together with their secretions (Ingham 2009). Examples of root morphology include the presence and size of root hairs, the length of roots along with their branching properties. Examples of rhizosheath properties include the amount of soil adhering to the root and root hairs along the with the proportion of the root covered in soil. Rhizosheath soil can also have a different pore network, different soil aggregate sizes and microbial community. These root and rhizosheath traits change a plants capacity to uptake water and nutrients allowing the plant to tolerate water deficits, heat stress and limited nutrient availability.
 <br>
@@ -22,3 +22,26 @@ Once the images are in the form of labels a suite of information can be quantifi
 
 ## Workflow
 The very first step is to "wrangle" the data. Volume microscopy data comes in many file formats and shapes. Our images came as 3D TIFFS but we needed then as image sequences (a folder of 2D images, that when joined together create a 3D image). This is done with the “Convert_3D_Images_To_Slices.ipynb”. 
+
+From here we need to produce training data for the model. The images from the CT scanner are 16bit so can have up to 65,536 unique values. To draw meaningful information from the images we need to class them into labels. For example, we create an image which has only 5 values: “root”, “soil”, “pore”, “plastic growth pot”, “background”. 
+Each 3D image has ~2000 slices so doing this by hand would take months to years. Enter deep learning and training data, the idea is that we can perfectly segment ~ 40 images randomly selected from the 16bit images and manually assign the labels (can be done in ImageJ see Figure 1b). Once segmented the 16bit image is saved in a folder called “images” and the mask is saved in a folder called “mask”. Consistency is the key here, the 16bit image must have the same name and the relevant label must be the same value (e.g. “root” is always 2)
+
+To provide better examples to the model we also resliced the data (reslice.ipynb), essentially this switches from an XY perspective to a XZ (example below in Figure 2) perspective. We see this is pseudo – 3D training. 
+<p align="center">
+<img  src="content/reslice_eg.PNG"/> 
+</p>
+
+This data is then used to train the model, here we used the established workflow from  [“A workflow for segmenting soil and plant X-ray computed tomography images with deep learning in Google’s Colaboratory”](https://www.frontiersin.org/articles/10.3389/fpls.2022.893140/full)by Rippner et al (2022). 
+
+It is important to note that a to run the model on a “normal” GPU (e.g. ~ 8gb VRAM), the images will need to be reduced drastically (e.g. a 5 fold decrease in quality). To avoid image reduction, we troubleshooted on local computers and then rented a high-end GPU (e.g. nvidia a100) to train the model. The model can then be downloaded and images can be processed locally, this is the most cost effective approach as processing the data with the model is time consuming but not necessarily needing of high end computational resources.  
+
+For parameters it is best to refer to Rippner et al (2022), the [YouTube video tutorial is very informative](https://www.youtube.com/watch?v=_5AIN8Wm-PQ). (Our version of the model training is Model_Training.ipynb)
+Multiple models are trained, adn testeed on segmented data that is left out of model training ("validation data"). Accuracy metrics are recorded and the best model is chosen.
+
+<p align="center">
+<img  src="content/model_metrics.PNG"/> 
+</p>
+
+This [blog post](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9) explains the metrics and how to interpret them. It is important to stay grounded, even a trained expert hand-segmenting every slice would make some mistakes. The use of this automated approaches is always a balance between accuracy and efficiency.  
+
+
