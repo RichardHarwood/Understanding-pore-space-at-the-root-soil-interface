@@ -1,4 +1,5 @@
 # Understanding pore space at the root soil interface in soil
+# Authors Richard Harwood and Devin A. Rippner 
 ### Overview 
 Soil has been referred to as the most complex biomaterial on earth (Young and Crawford 2004), this complexity is increased when the focus is on the plant-soil interface. It is well understood that soil structure and soil biota influence soil health and that plant root architecture and root exudates are influential. The most obvious way that plant roots change soil structure is through physical force. As a plant root navigates through the soil it changes not just the physical structure but also the chemical and biological properties in its immediate vicinity (Hinsinger 2009). During root growth a distinct volume of soil often adheres to the plant root called the rhizosheath, and immediately adjacent to this is an area of soil called the rhizosphere that is distinctly different to bulk soil which is further away from the root system. The rhizosheath and rhizosphere have a very interesting implication: they show that a small volume of soil that is close too, but not touching, the root system can have different structural, chemical, and biological properties to near-by bulk soil. In this distinct volume of soil, bacteria form microaggregates by binding soil particles together with their secretions (Ingham 2009). Examples of root morphology include the presence and size of root hairs, the length of roots along with their branching properties. Examples of rhizosheath properties include the amount of soil adhering to the root and root hairs along the with the proportion of the root covered in soil. Rhizosheath soil can also have a different pore network, different soil aggregate sizes and microbial community. These root and rhizosheath traits change a plants capacity to uptake water and nutrients allowing the plant to tolerate water deficits, heat stress and limited nutrient availability.
 <br>
@@ -65,6 +66,10 @@ Here is an example of the segmented roots and pore network in the rhizosheath:
 <p align="center">
 <img  src="content/ansto_2023_ai_output_hq.gif" width="600" height="600"/> 
 </p>
+
+After running "wrangle_fnn_porespy_3D_tau_touching.ipynb" there is a folder for each image with a wealth of information. The random walk and porespy data can be interacting with in ParaView, to wrangle all the .CSVS there is the "wrangle_and_graph_pore_out.ipynb"which collates and plots the data. 
+
+'
 
 
 
