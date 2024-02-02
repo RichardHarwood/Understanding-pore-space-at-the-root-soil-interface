@@ -73,7 +73,7 @@ Here is an example of the segmented roots and pore network in the rhizosheath:
 <img  src="content/ansto_2023_ai_output_hq.gif" width="600" height="600"/> 
 </p>
 
-After running "wrangle_fnn_porespy_3D_tau_touching.ipynb" there is a folder for each image with a wealth of information. The random walk and porespy data can be interacting with in ParaView, to wrangle all the .CSVS there is the "wrangle_and_graph_pore_out.ipynb"which collates and plots the data. 
+After running "wrangle_fnn_porespy_3D_tau_touching.ipynb" there is a folder for each image with a wealth of information. The random walk and porespy data can be interacted with in ParaView, to wrangle all the .CSVS there is the "wrangle_and_graph_pore_out.ipynb"which collates and plots the data. 
 
 '
 
