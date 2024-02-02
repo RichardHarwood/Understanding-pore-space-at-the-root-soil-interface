@@ -59,7 +59,16 @@ This is all done in the next notebook "wrangle_fnn_porespy_3D_tau_touching.ipynb
 *Calculates the distance from the surface of the root to the nearest porespace (Figure 1d) from this the proportion of root surface in contact with pore or soil can be calculated.
 Uses a random walker approach to quantify 3D directional tortuosity in the rhizosheath (Figure 1f) and the bulk soil. This is calculated using [“pytrax: A simple and efficient random walk implementation for calculating the directional tortuosity of images”](https://www.sciencedirect.com/science/article/pii/S2352711019302286) ) 
 * Calculates a suite of pore network characteristics (e.g. number and size of unique pore spaces along with the connections between pores) This is calculated using [“Porespy: Quantitative Image Analysis of Porous Materials]( https://porespy.org/) ) 
-* Creates STLS (3D meshes) that can be used for finite element methods and visualization 
+* Creates STLS (3D meshes) that can be used for finite element methods and visualization
+
+Here is an example of the segmented roots and pore network in the rhizosheath:
+<p align="center">
+<img  src="content/ansto_2023_ai_output_hq.gif" width="600" height="600"/> 
+</p>
+
+
+
+
 
 
 
