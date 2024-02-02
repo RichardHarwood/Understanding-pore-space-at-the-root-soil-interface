@@ -1,3 +1,9 @@
+To do: 
+* make sure notebooks render relevent output (one has an error right now)
+* add in results based on full scale analysis
+* add in links to model we used along with training data (and images to test on)
+
+
 # Understanding pore space at the root soil interface in soil
 ## Authors: [Richard Harwood](https://richardharwood.github.io./) and [Devin A. Rippner](https://functionalsoilhealth.com/) 
 ### Overview 
