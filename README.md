@@ -3,6 +3,11 @@ To do:
 * add in results based on full scale analysis
 * add in links to model we used along with training data (and images to test on)
 
+Notes:
+  Even with an a100 (rented from google colab enteprise) we could only train the model at scale =0.8
+  To do the pore analysis we need to reduce the models to scale = 0.2 
+  Cloud computing seems like the best way to finsih the analysis at scale=1 
+
 
 # Understanding pore space at the root soil interface in soil
 ## Authors: [Richard Harwood](https://richardharwood.github.io./) and [Devin A. Rippner](https://functionalsoilhealth.com/) 
