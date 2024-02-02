@@ -44,6 +44,22 @@ Multiple models are trained, adn testeed on segmented data that is left out of m
 
 This [blog post](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9) explains the metrics and how to interpret them. It is important to stay grounded, even a trained expert hand-segmenting every slice would make some mistakes. The use of this automated approaches is always a balance between accuracy and efficiency.  
 
-Once this notebook is run we have a segmented folder for each CT scan, the next step is draw meaningful information from the segmented images. 
+Once this notebook is run we have a segmented folder for each CT scan, here is a random slice to see the example output:
+
+<p align="center">
+<img  src="content/fnn_output.PNG" width="400" height="400"/> 
+</p>
+There are clearly some minor issues, from here we can do some post processing to clean up the images or add more training data to the model and retrain to improve. (the latter is better but more time consuming, so we took the first option).
+Which leads to the next step wrangling the data and performing quantitative analysis.
+
+This is all done in the next notebook "wrangle_fnn_porespy_3D_tau_touching.ipynb" which performs the following tasks:
+* Finesses the root segmentation using a dilate , erode, fill holes, remove small objects workflow. 
+* Dilates the area around the roots to a set voxel value to create an arbitrary rhizosheath (for example at voxel size 6.5um dilated 160 voxels would create a 1mm rhizosheath (see Figure 1c), anything not “rhizosheath” is bulk soil. 
+* Calculates the volume of the rhizosheath and the volume or pore in the rhizosheath to calculate porosity and compares this to porosity in the bulk soil.
+*Calculates the distance from the surface of the root to the nearest porespace (Figure 1d) from this the proportion of root surface in contact with pore or soil can be calculated.
+Uses a random walker approach to quantify 3D directional tortuosity in the rhizosheath (Figure 1f) and the bulk soil. This is calculated using [“pytrax: A simple and efficient random walk implementation for calculating the directional tortuosity of images”](https://www.sciencedirect.com/science/article/pii/S2352711019302286) ) 
+* Calculates a suite of pore network characteristics (e.g. number and size of unique pore spaces along with the connections between pores) This is calculated using [“Porespy: Quantitative Image Analysis of Porous Materials]( https://porespy.org/) ) 
+* Creates STLS (3D meshes) that can be used for finite element methods and visualization 
+
 
 
