@@ -1,1 +1,4 @@
+## data is stored O:\PRJ-soil_HPC
+## The code has a reduce option (it is set to false) it works on Reduce = True, the notebook is set to Reduce = False. (basically it just reduces the data quality). I havnt tested it on Reduce = False (I have no way of doing that).
 
+Thanks! 
