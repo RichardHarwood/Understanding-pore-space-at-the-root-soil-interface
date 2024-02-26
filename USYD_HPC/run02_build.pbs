@@ -1,0 +1,21 @@
+#PBS -P soil_HPC
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=1:00:00
+#PBS -N job02copy
+
+module load singularity
+
+# Assuming you are running this from your project folder, /project/<YOUR_PROJECT>
+cd $PBS_O_WORKDIR
+
+### 1 BUILD IMAGE ###
+# If these are not set, it defaults to your home foler which will fill up very quickly.
+export SINGULARITY_CACHEDIR=`pwd`
+export SINGULARITY_TMPDIR=`pwd`
+singularity build soil.img docker://sydneyinformaticshub/soil:newversions
+singularity run soil.img /bin/bash -c "/build/miniconda3/bin/python test.py"
+
+
+### 2 EXAMPLE WORKFLOW ###
+# Remove the build commands above and execute:
+singularity run --bind /project:/project soil.img /bin/bash -c "/build/miniconda3/bin/python harwood_root_soil_hpc.py"

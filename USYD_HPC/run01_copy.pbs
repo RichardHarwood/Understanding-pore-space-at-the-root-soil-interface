@@ -1,0 +1,9 @@
+#PBS -P soil_HPC
+#PBS -l select=1:ncpus=2:mem=8gb
+#PBS -l walltime=2:00:00
+#PBS -N job01copy
+#PBS -q dtq
+
+# Assuming you are running this from your project folder, /project/<YOUR_PROJECT>
+cd $PBS_O_WORKDIR
+rsync -av /rds/PRJ-soil_HPC/ .
